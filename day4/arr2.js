@@ -8,8 +8,9 @@
 6. includes -> returns true if element is present or false
 7. concat -> Join 2 arrays
 8. reverse -> 
-9. slice
-10. splice
+9. slice -> 
+10. splice ->
+11. sort()
 */
 
 let names = ["Rohit", "Shruti", "Shoeb", "Lalit"];
