@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop and Guess</title>
+</head>
+
+<body>
+
+    <script>
+        let favColor = "BLUE";
+        let colorGuess;
+        do {
+            colorGuess = prompt(`1. Guess my favourite color\n2. Type "quit" to exit`).toUpperCase();
+
+            if (colorGuess == "QUIT") {
+                alert(`Your guess is incorrect, My Fav color is ${favColor}, Thanks for using!!`);
+                break;
+            }
+
+        } while (colorGuess != favColor);
+
+        if (favColor == colorGuess) {
+            alert("Your guess is correct");
+        }
+    </script>
+</body>
+
+</html>
