@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO Page</title>
+</head>
+
+<body>
+
+    <script>
+        let userInput;
+        let tasks = []; // empty array
+        let singleTask;
+        let deleteElement;
+        let deleteElementIndex;
+        do {
+            userInput = prompt("Enter choice\n1. Add\n2. View\n3. Delete\n4. Quit").toUpperCase();
+
+            if (userInput == "QUIT" || userInput == 4) {
+                alert("Thanks for using bye!!");
+                break;
+            }
+            else if (userInput == "ADD" || userInput == 1) {
+                singleTask = prompt("Enter task to be added");
+                if (singleTask.trim() === "") {
+                    alert(`Task cannot be blank`);
+
+                }
+                else if (tasks.indexOf(singleTask) == -1) {
+                    tasks.push(singleTask);
+                    alert(`Task = ${singleTask} added successfully`);
+
+                } else {
+                    alert(`Task = ${singleTask} already exists`);
+
+                }
+
+            }
+            else if (userInput == "VIEW" || userInput == 2) {
+                if (tasks.length > 0) {
+                    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    console.log("Loading All Tasks");
+                    for (let i = 0; i < tasks.length; i++) {
+                        console.log(i, " -> ", tasks[i]);
+                    }
+                    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+                }
+                else {
+                    console.log("First Insert Task");
+                }
+            }
+            else if (userInput == "DELETE" || userInput == 3) {
+                if (tasks.length > 0) {
+
+                    deleteElement = prompt("Enter element to be deleted or index of element to be deleted").trim();
+
+                    // if (deleteElement >= 0 && deleteElement <= tasks.length) {
+                    if (!isNaN(deleteElement)) {
+                        deleteElementIndex = Number(deleteElement);
+                        if (deleteElementIndex >= 0 && deleteElementIndex < tasks.length) {
+                            // delete task
+                            tasks.splice(deleteElementIndex, 1);
+                            alert(`Element at index ${deleteElementIndex} is deleted successfully`)
+                        } else {
+                            alert(`Enter number in range 0 - ${tasks.length}`)
+                        }
+                    }
+                    else {
+                        deleteElementIndex = tasks.indexOf(deleteElement);
+
+                        if (deleteElementIndex != -1) {
+                            tasks.splice(deleteElementIndex, 1);
+                            alert(`Element - ${deleteElement} is deleted successfully`)
+
+                        } else {
+                            alert(`Element Not Found - ${deleteElement}!!`)
+
+                        }
+                    }
+
+
+                }
+                else {
+                    console.log("First Insert Task");
+                }
+            }
+            else {
+                alert("Incorrect Option");
+            }
+        } while (true);
+
+
+    </script>
+</body>
+
+</html>
