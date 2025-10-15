@@ -26,7 +26,38 @@ console.log(body);
 Ek element -> Ek Parent -> thats why it changed from body to box
 */
 let box = document.querySelector(".box");
+// para.append(" Hello New Text added");
 
-box.append(para);
+box.appendChild(para);
 
-para.append(" Hello New Text added");
+let span = document.createElement("span");
+span.innerText = " Hello New Text added";
+para.appendChild(span);
+
+let button = document.createElement("button");
+button.innerText = "Click Here";
+
+para.append(button);
+para.append("Do Not Click");
+para.prepend(button);
+
+let newButton = document.createElement("button");
+newButton.innerText = "Newly Created Button";
+
+let paragraph = document.querySelector("p");
+
+console.log(paragraph);
+console.log(paragraph.outerHTML);
+console.log(paragraph.innerHTML);
+
+// paragraph.insertAdjacentElement("beforebegin", newButton);
+// paragraph.insertAdjacentElement("afterbegin", newButton);
+// paragraph.insertAdjacentElement("afterend", newButton);
+paragraph.insertAdjacentElement("beforeend", newButton);
+
+console.log(paragraph.outerHTML);
+
+// paragraph.removeChild(newButton);
+para.remove();
+
+body.remove();
