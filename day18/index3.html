@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button>My Button 1</button>
+
+    <button>My Button 2</button>
+
+    <button>My Button 3</button>
+
+    <button>My Button 4</button>
+    <script>
+
+        function displayEnterInfo(btn) {
+
+            console.log(`Mouse enter on button ${btn.innerText} area`);
+        }
+        function displayLeaveInfo(btn) {
+
+            console.log(`Mouse leave on button ${btn.innerText} area`);
+        }
+
+        let allBtns = document.querySelectorAll("button");
+
+
+        for (const btn of allBtns) {
+
+            console.log(btn.innerText);
+            // btn.onclick = displayEnterInfo;
+            btn.addEventListener("click", function () {
+                displayEnterInfo(btn);
+            })
+            // btn.addEventListener("mouseenter", function () {
+            //     displayEnterInfo(btn);
+            // })
+            // btn.addEventListener("mouseleave", function () {
+            //     displayLeaveInfo(btn);
+            // });
+        }
+
+
+    </script>
+</body>
+
+</html>
