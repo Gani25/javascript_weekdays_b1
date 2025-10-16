@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button>My Button 1</button>
+
+    <button>My Button 2</button>
+
+    <button>My Button 3</button>
+
+    <button>My Button 4</button>
+    <script>
+
+        function displayEnterInfo(btn) {
+
+            console.log(`Mouse enter on button ${button.innerText} area`);
+        }
+        function displayLeaveInfo(btn) {
+
+            console.log(`Mouse leave on button ${button.innerText} area`);
+        }
+
+        let button = document.querySelector("button");
+
+        console.log(button.outerHTML);
+        console.dir(button);
+
+        let allBtns = document.querySelectorAll("button");
+
+        for (const btn of allBtns) {
+            // btn.onmouseenter = displayEnterInfo(btn);
+
+            console.log(btn.innerText);
+            btn.onmouseenter = function () {
+                displayEnterInfo(btn);
+            }
+            btn.onmouseleave = function () {
+                displayLeaveInfo(btn);
+            }
+        }
+        /*
+        
+        button.onmouseenter = function () {
+            console.log(`Mouse enter on button ${button.innerText} area`);
+
+            button.style.backgroundColor = "red";
+        }
+        button.onmouseleave = function () {
+            console.log(`Mouse leave on button ${button.innerText} area`);
+
+            button.style.backgroundColor = "inherit";
+        }*/
+
+
+    </script>
+</body>
+
+</html>
