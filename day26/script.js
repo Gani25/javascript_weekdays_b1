@@ -1,3 +1,6 @@
+// Import
+import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2@11/+esm";
+
 // Elements
 const form = document.getElementById("regForm");
 const submitBtn = document.getElementById("submitBtn");
@@ -165,7 +168,7 @@ const messages = {
 
 function setValidState(id) {
   const element = fields[id];
-  console.log(element);
+  // console.log(element);
   const icon = icons[id];
 
   element.classList.remove("invalid");
@@ -196,9 +199,12 @@ function clearState(id) {
   const icon = icons[id];
 
   element.classList.remove("invalid", "valid");
-
-  icon.className = "fa input-icon";
-  errors[id].textContent = "";
+  if (icon) {
+    icon.className = "fa input-icon";
+  }
+  if (errors[id]) {
+    errors[id].textContent = "";
+  }
 }
 
 // Main Function Which will be called to check validations for each field
@@ -289,3 +295,62 @@ togglePasswordBtn.addEventListener("click", () => {
   eyeIcon.classList.toggle("fa-eye");
   eyeIcon.classList.toggle("fa-eye-slash");
 });
+
+// submit logic
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  // mark all as touched and check for validations
+  Object.keys(touched).forEach((field) => {
+    touched[field] = true;
+  });
+  const allIds = Object.keys(fields);
+
+  const allValids = allIds.every((id) => validateField(id, true));
+  if (allValids) {
+    // backend call
+
+    // show alert with a message form submitted
+    Swal.fire({
+      title: "Done!",
+      text: "Data Saved Successfully🎉",
+      icon: "success",
+    });
+
+    form.reset();
+    // clear all UI
+    Object.keys(fields).forEach((field) => {
+      fields[field].classList.remove("valid", "invalid");
+      if (icons[field]) {
+        icons[field].className = "fa input-icon";
+      }
+      if (errors[field]) {
+        errors[field].textContent = "";
+      }
+      touched[field] = false;
+    });
+
+    // disabled country code and city
+    fields.countryCode.disabled = true;
+    fields.city.disabled = true;
+
+    submitBtn.disabled = true;
+    submitBtn.classList.remove("active");
+
+    // restore password to password and with eye icon
+    fields.password.type = "password";
+    eyeIcon.classList.add("fa-eye");
+    eyeIcon.classList.remove("fa-eye-slash");
+  } else {
+    allIds.forEach((id) => validateField(id, true));
+
+    // extra feature -> focus on first error form input
+    const firstInvalid = allIds.find((id) => !validateField(id, true));
+
+    if (firstInvalid) {
+      fields[firstInvalid].focus();
+    }
+  }
+});
+
+updateSubmitButton();
